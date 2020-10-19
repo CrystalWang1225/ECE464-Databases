@@ -51,8 +51,8 @@ costs = Table('costs', metadata,
               Column('cost', Integer),
               Column('date', Date))
 
-# function to get biweekly wage
-def get_bi_wage():
+# function to get weekly wage
+def get_wage():
     sql = "SELECT employees.eid, employees.ename ,employees.wage * work_sheets.total_hours AS Wages FROM work_sheets JOIN employees ON employees.eid=work_sheets.eid WHERE date >= '2020/10/10' AND date <= '2020/10/27';"
     result = connection.execute(sql)
     r = result.fetchall()
@@ -60,7 +60,7 @@ def get_bi_wage():
 
 # function to calculate the total the boat company has to pay the employee's by
 def get_total_wage():
-    result = get_bi_wage()
+    result = get_wage()
     total_wage = 0
     for each in result:
         total_wage += each[2]

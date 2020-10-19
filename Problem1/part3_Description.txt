@@ -3,7 +3,7 @@ Yuecen Wang Part3 - Description
 In order to expand the codebase to a larger scale, I have added/changed the following tables:
 1. I changed the age that contained in the original sailor table to DOB, which represents date of birth, so it doesn't needed to be updated every year and can easily get age from date of birth too.
 2. I added a price in the reserves table so then the revenue of the renting service can be calculated. The price should change according to its popularity and time period.
-3. In order to achieve the idea of having bi-weekly payment and for the company to keep track on the profit, another three tables are added. Employee table records employee's information with their hourly wage rate. The work_sheet records how many hours they have worked on each day. The costs tabel records how much it costs to fix a certain boat. The total profit can be then calculated by the total revenue subtracted by the amount of wages paid and the the costs for fixing the boats. s
+3. In order to achieve the idea of having weekly payment and for the company to keep track on the profit, another three tables are added. Employee table records employee's information with their hourly wage rate. The work_sheet records how many hours they have worked on each day. The costs tabel records how much it costs to fix a certain boat. The total profit can be then calculated by the total revenue subtracted by the amount of wages paid and the the costs for fixing the boats. s
 
 All the changed/added schemas are shown below
 
@@ -63,7 +63,7 @@ mysql> describe costs;
 
 Example's on the operations the new schema can do:
 
-bi-weekly payment:
+weekly payment:
 mysql> SELECT employees.eid, employees.ename ,employees.wage * work_sheets.total_hours AS Wages FROM work_sheets JOIN employees ON employees.eid=work_sheets.eid WHERE date >= '2020/10/10' AND date <= '2020/10/27';
 +-----+---------+-------+
 | eid | ename   | Wages |
