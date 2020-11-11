@@ -1,0 +1,91 @@
+> db.actions.find({"rating":{"$gt": 8.0}}).limit(5).pretty()
+{
+	"_id" : ObjectId("5fac1ffb11b3998ac863123b"),
+	"movie" : "V for Vendetta",
+	"year" : 2005,
+	"time(min)" : 132,
+	"movie_rating" : "R",
+	"metascore" : 62,
+	"vote" : 1019361,
+	"rating" : 8.2
+}
+{
+	"_id" : ObjectId("5fac1ffb11b3998ac863123f"),
+	"movie" : "Indiana Jones and the Last Crusade",
+	"year" : 1989,
+	"time(min)" : 127,
+	"movie_rating" : "PG-13",
+	"metascore" : 65,
+	"vote" : 683172,
+	"rating" : 8.2
+}
+{
+	"_id" : ObjectId("5fac1ffb11b3998ac8631245"),
+	"movie" : "Avengers: Endgame",
+	"year" : 2019,
+	"time(min)" : 181,
+	"movie_rating" : "PG-13",
+	"metascore" : 78,
+	"vote" : 777852,
+	"rating" : 8.4
+}
+{
+	"_id" : ObjectId("5fac200011b3998ac8631249"),
+	"movie" : "Spider-Man: Into the Spider-Verse",
+	"year" : 2018,
+	"time(min)" : 117,
+	"movie_rating" : "PG",
+	"metascore" : 87,
+	"vote" : 349929,
+	"rating" : 8.4
+}
+{
+	"_id" : ObjectId("5fac200011b3998ac863124e"),
+	"movie" : "The Dark Knight",
+	"year" : 2008,
+	"time(min)" : 152,
+	"movie_rating" : "PG-13",
+	"metascore" : 84,
+	"vote" : 2267494,
+	"rating" : 9
+}
+
+
+> db.actions.find({}).sort({"year":1, "vote":-1}).limit(3).pretty()
+{
+	"_id" : ObjectId("5fac4e8811b3998ac8632786"),
+	"movie" : "Scarface",
+	"year" : 1932,
+	"time(min)" : 93,
+	"movie_rating" : "PG",
+	"metascore" : 87,
+	"vote" : 24928,
+	"rating" : 7.8
+}
+{
+	"_id" : ObjectId("5fac4e7f11b3998ac863277f"),
+	"movie" : "The Adventures of Robin Hood",
+	"year" : 1938,
+	"time(min)" : 102,
+	"movie_rating" : "PG",
+	"metascore" : 97,
+	"vote" : 46704,
+	"rating" : 7.9
+}
+{
+	"_id" : ObjectId("5fac50ba11b3998ac8632a24"),
+	"movie" : "Beau Geste",
+	"year" : 1939,
+	"time(min)" : 112,
+	"movie_rating" : "Passed",
+	"metascore" : 69,
+	"vote" : 5460,
+	"rating" : 7.6
+}
+
+
+db.actions.find({}).sort({"movie_rating":{"$or":[{"movie_rating":"PG"},{"movie_rating":"PG-13"}]}}).count()
+2142
+
+> db.actions.find({"movie":"Mulan"},{_id:0, rating:1, vote:1})
+{ "vote" : 67598, "rating" : 5.4 }
